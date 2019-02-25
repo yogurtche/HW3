@@ -4,12 +4,12 @@ app = Flask(__name__, static_url_path='/static')
 
 
 students_list = [
-    {"id": 1, "student": "Iris Dyrmishi"},
-    {"id": 2, "student": "Ilda Duka"},
-    {"id": 3, "student": "Fatme Tsiko"}
+    {"id": 1, "student": "Jorgo Qirjaj"},
+    {"id": 2, "student": "Anxhela Beluli"},
+    {"id": 3, "student": "Flavia Hajna"}
 ]
 
-# Retrieve of CRUD
+
 def get_student(student_id):
     flag = False
     for student in students_list:
@@ -17,20 +17,20 @@ def get_student(student_id):
             flag = True
             return jsonify(student)
     if flag == False:    
-        return "Could not find this ID"
+        return "This ID does not exist."
 
-def delete_student(student_id):  #delete method
+def delete_student(student_id): 
     flag = False
     for i in range(len(students_list)): 
         if students_list[i]['id'] == student_id: 
             del students_list[i]
             flag = True
-            return "Student was deleted successfully!"
+            return "You deleted this studdent successfully."
 
     if flag == False:
-        return "ID not Found!"
+        return "ID does not exist."
 
-def put_student(student_id, name):  #PUT method
+def put_student(student_id, name):  
     id_exist = False
 
     for a in students_list:
@@ -45,7 +45,7 @@ def put_student(student_id, name):  #PUT method
 
     return jsonify(students_list)
            
-def post_student(student_id, name): # Post method
+def post_student(student_id, name): 
     id_exist = False
     for i in range(len(students_list)):
         if students_list[i-1]['id'] == student_id:
@@ -57,10 +57,10 @@ def post_student(student_id, name): # Post method
     else:
         return "ID already exist"
     
-def get_students(): #GET ALL
+def get_students(): 
     return jsonify(students_list)
 
-# Route mapping methods.
+
 
 @app.route('/')
 def main():

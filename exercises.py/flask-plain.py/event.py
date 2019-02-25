@@ -4,12 +4,12 @@ app = Flask(__name__, static_url_path='/static')
 
 
 events_list = [
-    {"id": 1, "event": "International Week"},
-    {"id": 2, "event": "Dance Crew Performance"},
-    {"id": 3, "event": "Alumni Day"}
+    {"id": 1, "event": "StartUp AUBG 2019"},
+    {"id": 2, "event": "HAIR The Musical BPC"},
+    {"id": 3, "event": "TEDxAUBG 2019"}
 ]
 
-# Retrieve of CRUD
+
 def get_event(event_id):
     flag = False
     for event in events_list:
@@ -17,20 +17,20 @@ def get_event(event_id):
             flag = True
             return jsonify(event)
     if flag == False:    
-        return "Could not find this ID"
+        return "Could not find this ID."
 
-def delete_event(event_id):  #delete method
+def delete_event(event_id):  
     flag = False
     for i in range(len(events_list)): 
         if events_list[i]['id'] == event_id: 
             del events_list[i]
             flag = True
-            return "Event was deleted successfully!"
+            return "You deleted this event successfully."
 
     if flag == False:
-        return "ID was not Found!"
+        return "ID does not exist."
 
-def put_event(event_id, name):  #PUT method
+def put_event(event_id, name):  
     id_exist = False
 
     for a in events_list:
@@ -45,7 +45,7 @@ def put_event(event_id, name):  #PUT method
 
     return jsonify(events_list)
            
-def post_event(event_id, name): # Post method
+def post_event(event_id, name): 
     id_exist = False
     for i in range(len(events_list)):
         if events_list[i-1]['id'] == event_id:
@@ -57,14 +57,14 @@ def post_event(event_id, name): # Post method
     else:
         return "ID already exist"
     
-def get_events(): #GET ALL
+def get_events(): 
     return jsonify(events_list)
 
-# Route mapping methods.
+
 
 @app.route('/')
 def main():
-    return "Hello World!"
+    return "Hello world!"
 
 
 @app.route('/v2/event/<int:event_id>', methods=["GET","DELETE"])

@@ -5,12 +5,12 @@ app = Flask(__name__, static_url_path='/static')
 
 
 courses_list = [
-    {"id": 1, "name": "MAT230"},
-    {"id": 2, "name": "COS350"},
-    {"id": 3, "name": "ENG330"}
+    {"id": 1, "name": "COS450"},
+    {"id": 2, "name": "INF480"},
+    {"id": 3, "name": "FAR330"}
 ]
 
-# Retrieve of CRUD
+
 def get_course(course_id):
     flag = False
     for course in courses_list:
@@ -18,22 +18,22 @@ def get_course(course_id):
             flag = True
             return jsonify(course)
     if flag == False:    
-        return "Could not find this ID"
+        return "This ID does not exist."
 
 
-def delete_course(course_id):  #delete method
+def delete_course(course_id):  
     flag = False
     for i in range(len(courses_list)): 
         if courses_list[i]['id'] == course_id: 
             del courses_list[i]
             flag = True
-            return "Course was deleted successfully!"
+            return "You deleted this course successfully."
 
     if flag == False:
-        return "ID not Found!"
+        return "ID does not exist."
 
 
-def put_course(course_id, name):  #PUT method
+def put_course(course_id, name):  
     id_exist = False
 
     for a in courses_list:
@@ -48,7 +48,7 @@ def put_course(course_id, name):  #PUT method
 
     return jsonify(courses_list)
            
-def post_course(course_id, name): # Post method
+def post_course(course_id, name): 
     id_exist = False
     for i in range(len(courses_list)):
         if courses_list[i-1]['id'] == course_id:
@@ -60,15 +60,15 @@ def post_course(course_id, name): # Post method
     else:
         return "ID already exist"
     
-def get_courses(): #GET ALL
+def get_courses(): 
     return jsonify(courses_list)
 
 
-# Route mapping methods.
+
 
 @app.route('/')
 def main():
-    return "Hello World!"
+    return "Hello world!"
 
 
 

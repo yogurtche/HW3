@@ -2,16 +2,16 @@ from flask_restful import Resource
 from flask import jsonify
 
 courses_list = [
-    {"id": 1, "name": "MAT230"},
-    {"id": 2, "name": "COS350"},
-    {"id": 3, "name": "ENG330"}
+    {"id": 1, "name": "COS450"},
+    {"id": 2, "name": "INF480"},
+    {"id": 3, "name": "FAR330"}
 ]
 
 class course_one(Resource):
     
 
     
-    def put(self,course_id,name):   #Put Method
+    def put(self,course_id,name):   
         id_exist = False
 
         for a in courses_list:
@@ -26,7 +26,7 @@ class course_one(Resource):
 
         return jsonify(courses_list)
 
-def post(self,course_id,name):  #Post method
+def post(self,course_id,name):  
 
         id_exist = False
         for i in range(len(courses_list)):
@@ -37,31 +37,31 @@ def post(self,course_id,name):  #Post method
             courses_list.append(dict({'id': course_id, 'name': name}))
             return jsonify(courses_list)
         else:
-            return "ID already exist"
+            return "ID already exists."
 
     
 
 class course_two(Resource):
 
-    def get(self, course_id):  #Get Method
+    def get(self, course_id):  
         flag = False
         for course in courses_list:
             if course["id"] == course_id:
                 flag = True
                 return jsonify(course)
         if flag == False:    
-            return "ID not Found!"
+            return "ID does not exist."
        
-    def delete(self, course_id):      #Delete method
+    def delete(self, course_id):      
         flag = False
         for i in range(len(courses_list)): 
             if courses_list[i]['id'] == course_id: 
                 del courses_list[i]
                 flag = True
-                return "The course is  deleted!"
+                return "This course is deleted."
 
         if flag == False:
-            return "ID was not found!"
+            return "ID does not exist."
 
 class all_courses(Resource):
     def get(self):

@@ -11,7 +11,7 @@ api = Api(app)
 
 @app.route('/')
 def home():
-    return 'Hello,  World!'
+    return 'Hello world!'
 
  
 api.add_resource(course_one, '/course/<int:course_id>/<name>')

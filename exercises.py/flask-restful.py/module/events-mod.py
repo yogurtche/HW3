@@ -2,16 +2,16 @@ from flask_restful import Resource
 from flask import jsonify
 
 events_list = [
-    {"id": 1, "event": "International Week"},
-    {"id": 2, "event": "Dance Crew Performance"},
-    {"id": 3, "event": "Alumni Day"}
+    {"id": 1, "event": "StartUp AUBG 2019"},
+    {"id": 2, "event": "HAIR The Musical BPC"},
+    {"id": 3, "event": "TEDxAUBG 2019"}
 ]
 
 class event_one(Resource):
     
 
     
-    def put(self,event_id,name):   #Put Method
+    def put(self,event_id,name):   
         id_exist = False
 
         for a in events_list:
@@ -26,7 +26,7 @@ class event_one(Resource):
 
         return jsonify(events_list)
 
-def post(self,event_id,name):  #Post method
+def post(self,event_id,name):  
 
         id_exist = False
         for i in range(len(events_list)):
@@ -37,31 +37,31 @@ def post(self,event_id,name):  #Post method
             events_list.append(dict({'id': event_id, 'name': name}))
             return jsonify(events_list)
         else:
-            return "ID already exist"
+            return "ID already exists."
 
     
 
 class event_two(Resource):
 
-    def get(self, event_id):  #Get Method
+    def get(self, event_id):  
         flag = False
         for event in events_list:
             if event["id"] == event_id:
                 flag = True
                 return jsonify(event)
         if flag == False:    
-            return "ID not Found!"
+            return "ID does not exist."
        
-    def delete(self, event_id):      #Delete method
+    def delete(self, event_id):    
         flag = False
         for i in range(len(events_list)): 
             if events_list[i]['id'] == event_id: 
                 del events_list[i]
                 flag = True
-                return "The event is  deleted!"
+                return "This event is  deleted."
 
         if flag == False:
-            return "ID was not found!"
+            return "ID does not exist."
 
 class all_events(Resource):
     def get(self):
