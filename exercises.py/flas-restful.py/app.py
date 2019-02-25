@@ -26,4 +26,4 @@ api.add_resource(event_two, '/event/<int:event_id>/')
 
 api.add_resource(all_courses, '/courses/')
 api.add_resource(all_students, '/students/')
-api.add_resource(all_events, '/events/')
+api.add_resource(all_events, '/events/') 
